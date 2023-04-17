@@ -1,5 +1,5 @@
 const API = 'https://youtube-v31.p.rapidapi.com/search?channelId=UC55-mxUj5Nj3niXFReG44OQ&part=snippet%2Cid&order=date&maxResults=8'
-
+const yt = 'https://www.youtube.com/watch?v='
 const content = null || document.getElementById('content')
 
 const options = {
@@ -22,19 +22,21 @@ async function fetchData(urlApi){
 
         let view  = `
         ${profile.items.map(result => `
+        <a href="${yt}${result.id.videoId}" target="_blank"> 
         <div class="group relative">
-            <div
-                class="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none"
-            >
-                <img src="${result.snippet.thumbnails.high.url}" alt="${result.snippet.description}" class="w-full" />
-            </div>
-            <div class="mt-4 flex justify-between">
-                <h3 class="text-sm text-gray-700">
-                    <span aria-hidden="true" class="absolute inset-0"></span>
-                    ${result.snippet.title}
-                </h3>
-            </div>
+        <div
+            class="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none"
+        >
+            <img src="${result.snippet.thumbnails.high.url}" alt="${result.snippet.description}" class="w-full" />
         </div>
+        <div class="mt-4 flex justify-between">
+            <h3 class="text-sm text-gray-700">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                ${result.snippet.title}
+            </h3>
+        </div>
+    </div>
+        </a>
         `
         ).slice(0,4).join('')}
         `;
